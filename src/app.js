@@ -6,12 +6,12 @@
 var UI = require('ui');
 var ajax = require('ajax');
 var Vector2 = require('vector2');
-var wpm = 200;
+var wpm = 50;
 var results, counter;
 
 var main = new UI.Card({
   title: 'Vite',
-  icon: 'images/main_iconx1.png',
+  //icon: 'images/icon_1x.png',
   subtitle: 'Welcome!',
   body: 'Speed proof your reading abilities.'
 });
@@ -19,7 +19,7 @@ var main = new UI.Card({
 main.show();
 
 var news_window = new UI.Menu();
-news_window.section(0, {title: 'Today', items: []});
+news_window.section(0, {title: 'Featured', items: []});
 
 main.on('click', 'select', function(e) {
   ajax({ url: 'https://www.googleapis.com/books/v1/volumes?q=classic', type: 'json' },
