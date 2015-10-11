@@ -7,7 +7,7 @@ var UI = require('ui');
 var ajax = require('ajax');
 var Vibe = require('ui/vibe');
 var Vector2 = require('vector2');
-var wpm = 250;
+var wpm = 50;
 var results, counter;
 
 var main = new UI.Card({
@@ -74,7 +74,7 @@ function spritzIt(textfield){
   var res = splitWord(results[counter]);
   textfield.text(res);
   counter++;
-  setTimeout(function () { spritzIt(textfield); }, 1000);
+  setTimeout(function () { spritzIt(textfield); }, 60000/wpm);
 }
 
 main.on('click', 'select', function(e) {
@@ -89,7 +89,17 @@ main.on('click', 'select', function(e) {
       font: 'gothic-24-bold',
       textAlign: 'center'
     });
+    
     wind.add(textfield);
+    wind.on('click','up',function(e){
+      wpm +=50;
+      console.log(wpm);
+    });
+    
+    wind.on('click','down',function(e){
+      wpm -=50;
+      console.log(wpm);
+    });
     wind.show();
     counter = 0;
     spritzIt(textfield);
